@@ -1,0 +1,114 @@
+buildscript {
+    dependencies {
+        def nav_version = "2.5.2"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+}
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.gmz.foursquare"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+kapt {
+    correctErrorTypes true
+}
+dependencies {
+
+    def nav_version = '2.5.3'
+    def livedata_version = "2.5.1"
+    def lottieVersion = '5.2.0'
+    def glideVersion = "4.14.2"
+    def retrofitVersion = "2.9.0"
+    def coroutinesVersion = "1.6.4"
+    def okhttpVersion = "5.0.0-alpha.7"
+    def daggerVersion = "2.44"
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //App Components
+    implementation 'androidx.activity:activity-ktx:1.6.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+
+    //RecylerView
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:$livedata_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$livedata_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //UI
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    //Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    //Data Store
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //Dependency Injection
+    implementation "com.google.dagger:hilt-android:$daggerVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$daggerVersion"
+
+}

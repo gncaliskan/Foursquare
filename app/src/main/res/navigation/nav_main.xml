@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.gmz.foursquare.view.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginToLikedVenus"
+            app:destination="@id/likedVenuesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/likedVenuesFragment"
+        android:name="com.gmz.foursquare.view.likedVenues.LikedVenuesFragment"
+        android:label="fragment_liked_venues"
+        tools:layout="@layout/fragment_liked_venues" >
+        <action
+            android:id="@+id/action_listToVenueDetail"
+            app:destination="@id/venueDetailFragment" />
+        <action
+            android:id="@+id/action_likedVenuesToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/venueDetailFragment"
+        android:name="com.gmz.foursquare.view.venueDetail.VenueDetailFragment"
+        android:label="fragment_venue_detail"
+        tools:layout="@layout/fragment_venue_detail" >
+        <argument
+            android:name="item"
+            app:argType="com.gmz.foursquare.data.entities.Item" />
+        <action
+            android:id="@+id/action_venueDetailFragment_to_likedVenuesFragment"
+            app:popUpTo="@id/likedVenuesFragment" />
+    </fragment>
+</navigation>
